@@ -22,6 +22,22 @@ test("button has correct label and color after click", () => {
   expect(buttonElement).toHaveClass("blue");
 });
 
+test("button disables if radio button is checked", () => {
+  //render app
+  render(<App />);
+  // find the button
+  const buttonElement = screen.getByRole("button", { name: /blue/i });
+  const checkBoxElement = screen.getByRole("checkbox", {
+    // name: /disable button/i,
+  });
+  // check the initial state of the button
+  expect(buttonElement).toBeEnabled();
+  expect(checkBoxElement).not.toBeChecked();
+  // click the button
+  // fireEvent.click(checkBoxElement);
+  // check the button is disabled
+  // expect(buttonElement).toBeDisabled();
+});
 // test("App contains correct heading", () => {
 //   render(<App />);
 //   const headingElement = screen.getByText(/learn react/i);
