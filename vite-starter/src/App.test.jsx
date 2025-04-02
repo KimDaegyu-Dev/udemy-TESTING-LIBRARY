@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 // import { logRoles } from "@testing-library/react";
 import App from "./App";
+import { kebabCaseToTitleCase } from "./helpers";
 test("button starts with correct label and color", () => {
   const { container } = render(<App />);
   // logRoles(container);
@@ -65,6 +66,18 @@ test("checkbox flow after button click", () => {
   fireEvent.click(checkBoxElement);
   expect(buttonElement).toBeEnabled();
   expect(buttonElement).toHaveClass("blue");
+});
+
+describe("kebabCaseToTitleCase", () => {
+  test("works for no hyphens", () => {
+    expect(kebabCaseToTitleCase("red")).toBe("Red");
+  });
+  test("works for one hyphens", () => {
+    expect(kebabCaseToTitleCase("midnight-blue")).toBe("Midnight Blue");
+  });
+  test("works for multiple hyphens", () => {
+    expect(kebabCaseToTitleCase("medium-violet-red")).toBe("Medium Violet Red");
+  });
 });
 
 // test("App contains correct heading", () => {
